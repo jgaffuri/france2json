@@ -1,5 +1,10 @@
-show overview
 change attribute values with codes
+ogrinfo $myfile -sql "ALTER TABLE $name ADD COLUMN code_num integer(3)"
+ogrinfo $myfile -dialect SQLite -sql "UPDATE $name SET code_num = CAST(code_06 AS integer(3))"
+do it with qgis...
+
+show overview
+
 move corsica
 add DOMs, etc
 
