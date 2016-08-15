@@ -1,4 +1,21 @@
+show overview
+change attribute values with codes
+move corsica
+add DOMs, etc
+
+make overview map
+make map with income data
+
+produce json for departements, zones electorales
+
+ogrinfo -so -al myfile.shp
 communes
-departements
-zones electorales
-example with income data
+INSEE_COM: String (5.0)
+NOM_COM: String (50.0)
+STATUT: String (25.0)
+X_CHF_LIEU: Integer (7.0)
+Y_CHF_LIEU: Integer (7.0)
+
+limite communes
+NATURE: String (200.0)
+
