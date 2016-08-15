@@ -1,9 +1,8 @@
-show overview
+test overview and everything else
 
 move corsica
 add DOMs, etc
 
-make overview map
 make map with income data
 
 produce json for departements, zones electorales

@@ -1,13 +1,17 @@
 # france2json
 
 communes
+id: INSEE identifier
+nom: Commune name
+st: Statut
 - s: Commune simple
+- o: Sous-préfecture
 - d: Préfecture de département
 - r: Préfecture de région
-- o: Sous-préfecture
 - c: Capitale
 
 limites
+na: Nature
 - i: Frontière internationale
 - o: Limite côtière
 - r: Limite de région
