@@ -54,7 +54,7 @@
 	//http://bl.ocks.org/mbostock/5557726
 
 	//get url parameters for projection, level and size
-	var size = 10800,
+	var size = 1000,
 
 	//build svg
 			svg = d3.select("#map").attr("width", size).attr("height", size),
@@ -99,7 +99,6 @@
 				.attr("class", function(bn){
 					return ["bn","bn_"+bn.properties.na].join(" ");
 				});
-
 	});
 
 </script>
