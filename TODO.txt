@@ -1,8 +1,3 @@
-change attribute values with codes
-ogrinfo $myfile -sql "ALTER TABLE $name ADD COLUMN code_num integer(3)"
-ogrinfo $myfile -dialect SQLite -sql "UPDATE $name SET code_num = CAST(code_06 AS integer(3))"
-do it with qgis...
-
 show overview
 
 move corsica
@@ -24,3 +19,20 @@ Y_CHF_LIEU: Integer (7.0)
 limite communes
 NATURE: String (200.0)
 
+
+CASE
+WHEN NATURE='Frontire internationale' THEN 'i'
+WHEN NATURE='Limite ctire' THEN 'o'
+WHEN NATURE="Limite d''arrondissement" THEN 'a'
+WHEN NATURE='Limite de commune' THEN 'c'
+WHEN NATURE='Limite de dpartement' THEN 'd'
+WHEN NATURE='Limite de rgion' THEN 'r'
+END
+
+CASE
+WHEN STATUT="Capitale d''tat" THEN 'c'
+WHEN STATUT='Commune simple' THEN 's'
+WHEN STATUT='Prfecture de dpartement' THEN 'd'
+WHEN STATUT='Prfecture de rgion' THEN 'r'
+WHEN STATUT='Sous-prfecture' THEN 'o'
+END
