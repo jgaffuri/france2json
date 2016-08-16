@@ -12,31 +12,16 @@
 		.rg_s { fill: #aaa; }
 		.rg_o { fill: #888; }
 		.rg_d { fill: #555; }
-		.rg_r { fill: #a22; }
+		.rg_r { fill: #555; }
 		.rg_c { fill: #f00; }
 
 		.bn { fill: none; stroke-linecap:round; stroke-linejoin:round }
-		.bn_i { stroke: #000; stroke-width: 1.5px; }
+		.bn_i { stroke: #000; stroke-width: 1px; }
 		.bn_o { stroke: none; }
-		.bn_r { stroke: #fff; stroke-width: 1.5px; }
-		.bn_d { stroke: #fff; stroke-width: 1px; }
-		.bn_a { stroke: #ccc; stroke-width: 1px; }
-		.bn_c { stroke: #ccc; stroke-width: 0.5px; }
-		.infoText { font-size: 13px; }
-
-		#info {
-			opacity: 0;
-			position: absolute;
-			padding: 5px;
-			width: 150px;
-			background: white;
-			border: 0px;
-			border-radius: 5px;
-			font: 14px;
-			pointer-events: none;
-			box-shadow: 5px 5px 5px grey;
-		}
-
+		.bn_r { stroke: #fff; stroke-width: 1.2px; }
+		.bn_d { stroke: #fff; stroke-width: 0.8px; }
+		.bn_a { stroke: #ccc; stroke-width: 0.8px; }
+		.bn_c { stroke: #ccc; stroke-width: 0.4px; }
 	</style>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -48,7 +33,7 @@
 
 <body>
 <svg id="map"></svg>
-<div id="info"></div>
+<div id="tooltip"></div>
 
 <script>
 	//http://bl.ocks.org/mbostock/5557726
@@ -67,9 +52,11 @@
 
 	//path function
 			path = d3.geoPath().projection(null),
-	//info
-			infoDiv = d3.select("#info")
+	//tooltip
+            tooltip = EstLib.tooltip({width:"250px"})
 			;
+
+	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale",}
 
 	//get data
 	d3.json("json/communes.json", function(error, communes) {
@@ -81,17 +68,9 @@
 				.attr("class", function(bn){
 					return ["rg","rg_"+bn.properties.st].join(" ");
 				})
-				.on("mouseover", function(rg) {
-					infoDiv.html(rg.properties.nom+"<br>"+rg.properties.st+"<br>"+rg.properties.id)
-							.style("left", (d3.event.pageX+30) + "px").style("top", (d3.event.pageY-20) + "px")
-							.transition().duration(200).style("opacity",1);
-				})
-				.on("mousemove", function() {
-					infoDiv.style("left", (d3.event.pageX+30) + "px").style("top", (d3.event.pageY-20) + "px");
-				})
-				.on("mouseout", function() {
-					infoDiv.transition().duration(200).style("opacity",0);
-				});
+				.on("mouseover", function(rg) { tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Statut: "+statutDict[rg.properties.st]+"<br>Code INSEE: "+rg.properties.id); })
+				.on("mousemove", function() { tooltip.mousemove(); })
+				.on("mouseout", function() { tooltip.mouseout(); });
 
 		//limits
 		g.append("g").selectAll("path").data(topojson.feature(communes, communes.objects.limites).features).enter()
