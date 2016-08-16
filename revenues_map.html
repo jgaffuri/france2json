@@ -68,8 +68,7 @@
             $.ajax({url:"stat/revenus.csv"})
     ).then(function(communes,data) {
 
-    	console.log(communes[0]);
-    	communes = JSON.parse(communes[0]);
+    	communes = communes[0];
 
     	data = d3.csvParse(data[0]);
     	data = EstLib.index1(data,"CODGEO","MED12");
