@@ -2,21 +2,23 @@
 
 See <b><a href="http://jgaffuri.github.io/france2json/overview.html">here</a></b>
 
+See <b><a href="http://jgaffuri.github.io/france2json/revenues_map.html">here</a></b>
+
 communes
 id: INSEE identifier
 nom: Commune name
 st: Statut
 - s: Commune simple
-- o: Sous-prÃ©fecture
-- d: PrÃ©fecture de dÃ©partement
-- r: PrÃ©fecture de rÃ©gion
+- o: Sous-préfecture
+- d: Préfecture de département
+- r: Préfecture de région
 - c: Capitale
 
 limites
 na: Nature
-- i: FrontiÃ¨re internationale
-- o: Limite cÃ´tiÃ¨re
-- r: Limite de rÃ©gion
-- d: Limite de dÃ©partement
+- i: Frontière internationale
+- o: Limite côtière
+- r: Limite de région
+- d: Limite de département
 - a: Limite d'arrondissement
 - c: Limite de commune
