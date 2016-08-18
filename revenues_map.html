@@ -112,6 +112,7 @@
 				});
 
  		//limits
+                //TODO do not draw the ones with stroke:none
  		g.append("g").selectAll("path").data(topojson.feature(communes, communes.objects.limites).features).enter()
  				.append("path").attr("d", path)
  				.attr("class", function(bn){
