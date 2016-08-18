@@ -1,3 +1,4 @@
+filter bn - remove the ones with stroke:none
 compress file
 
 move corsica
