@@ -6,7 +6,7 @@ This repository provides a number of reusable stuff and examples to make nice we
 
 ## Structure of communes.json file
 
-This file provide 2 feature collections:
+The file <a href="/json">communes.json</a> provides 2 feature collections:
 
 - 'communes' representing the communes with a polygonal geometry, with the following properties:
   - id: INSEE identifier, used to join statistical figures.
@@ -25,3 +25,7 @@ This file provide 2 feature collections:
   - d: Limite de département
   - a: Limite d'arrondissement
   - c: Limite de commune
+
+## Copyright
+
+<a href="http://professionnels.ign.fr/geofla" target="_blank">GEOFLA® dataset</a> is copyrighted. See the <a href="http://professionnels.ign.fr/geofla" target="_blank">IGN website</a> for more information.
