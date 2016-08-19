@@ -1,24 +1,27 @@
 # france2json
 
-See <b><a href="http://jgaffuri.github.io/france2json/overview.html">here</a></b>
+This repository provides a number of reusable stuff and examples to make nice web maps of France. It is based on the <a href="http://professionnels.ign.fr/geofla" target="_blank">GEOFLAÂ® dataset</a>, <a href="https://github.com/mbostock/topojson/wiki" target="_blank">TopoJSON format</a> and <a href="https://d3js.org/" target="_blank">D3.js</a> library. See these examples:
+- <a href="http://jgaffuri.github.io/france2json/overview.html">Map of the communes of France</a>
+- <a href="http://jgaffuri.github.io/france2json/revenues_map.html">Map of income by commune</a>
 
-See <b><a href="http://jgaffuri.github.io/france2json/revenues_map.html">here</a></b>
+## Structure of communes.json file
 
-communes
-id: INSEE identifier
-nom: Commune name
-st: Statut
-- s: Commune simple
-- o: Sous-préfecture
-- d: Préfecture de département
-- r: Préfecture de région
-- c: Capitale
+This file provide 2 feature collections:
 
-limites
-na: Nature
-- i: Frontière internationale
-- o: Limite côtière
-- r: Limite de région
-- d: Limite de département
-- a: Limite d'arrondissement
-- c: Limite de commune
+- 'communes' representing the communes with a polygonal geometry, with the following properties:
+  - id: INSEE identifier, used to join statistical figures.
+  - nom: Commune name
+  - st: Statut of the commune, among:
+    - s: Commune simple
+    - o: Sous-prÃ©fecture
+    - d: PrÃ©fecture de dÃ©partement
+    - r: PrÃ©fecture de rÃ©gion
+    - c: Capitale
+
+- 'limites' representing the commune boundaries, with a single property 'na' (nature) whose values are among:
+  - i: FrontiÃ¨re internationale
+  - o: Limite cÃ´tiÃ¨re
+  - r: Limite de rÃ©gion
+  - d: Limite de dÃ©partement
+  - a: Limite d'arrondissement
+  - c: Limite de commune
