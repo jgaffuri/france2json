@@ -1,5 +1,4 @@
-filter bn on client side - remove the ones with stroke:none
-compress file
+13.6 Mo
 
 compress more
 use -q
@@ -11,6 +10,8 @@ see pre-post-quantization parameters:
 "When using Cartesian coordinates, the meaning of the simplification threshold changes to be in projected coordinates. In conjunction with the --width and --height arguments (described below), you can specify a simplification threshold in pixels, which is convenient!" -> take 1 pixel? or 0.1?
 'compress' borders? check first with mouse over
 filter points (use --filter? Applies for lines?)
+
+remove useless bn? decompose rg/bn ?
 
 use bbox?
 "To include a bbox property in the generated topology that represents the bounding box of all contained features, use the --bbox argument. The bounding box array follows the same format as GeoJSON: [x0, y0, x1, y1]."

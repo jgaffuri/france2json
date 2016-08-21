@@ -113,12 +113,10 @@
 
 				//limits
 				var bn = topojson.feature(communes, communes.objects.limites).features;
-				console.log(bn.length);
 				bn = bn.filter(function (bn) {
 					var na = bn.properties.na;
 					return na!="o" && na!="a" && na!="c";
 				});
-				console.log(bn.length);
 				g.append("g").selectAll("path").data(bn).enter()
 						.append("path").attr("d", path)
 						.attr("class", function(bn){

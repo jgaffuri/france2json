@@ -10,4 +10,7 @@ topojson -o \
 	"limites=shp/LIMITE_COMMUNE.shp" \
 	-p id=INSEE_COM,nom=NOM_COM,st=STATUT_C,na=NATURE_C \
 	--width $size --height $size --margin $margin \
-	-s 2
+	-s 0.5
+	#-q0 10000 \
+	#-q1 10000 \
+	#
