@@ -73,7 +73,12 @@
 				.on("mouseout", function() { tooltip.mouseout(); });
 
 		//limits
-		g.append("g").selectAll("path").data(topojson.feature(communes, communes.objects.limites).features).enter()
+		var bn = topojson.feature(communes, communes.objects.limites).features;
+		bn = bn.filter(function (bn) {
+			var na = bn.properties.na;
+			return na!="o";
+		});
+		g.append("g").selectAll("path").data(bn).enter()
 				.append("path").attr("d", path)
 				.attr("class", function(bn){
 					return ["bn","bn_"+bn.properties.na].join(" ");
