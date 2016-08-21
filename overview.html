@@ -53,10 +53,10 @@
 	//path function
 			path = d3.geoPath().projection(null),
 	//tooltip
-            tooltip = EstLib.tooltip({width:"250px"})
+			tooltip = EstLib.tooltip({width:"250px"})
 			;
 
-	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale",}
+	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"}
 
 	//get data
 	d3.json("json/communes.json", function(error, communes) {

@@ -18,12 +18,12 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/topojson.v1.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/topojson.v1.min.js"></script>
 
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+	<script src="https://d3js.org/d3-color.v1.min.js"></script>
+	<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 	<script src="https://rawgit.com/jgaffuri/EurostatVisu/gh-pages/js/lib.js"></script>
 
@@ -51,76 +51,80 @@
 	//path function
 			path = d3.geoPath().projection(null),
 	//tooltip
-            tooltip = EstLib.tooltip({width:"250px"})
+			tooltip = EstLib.tooltip({width:"250px"})
 			;
 
-	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale",}
+	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"}
 
 	//build color scale
-    var colors = [];
-    for(var t=0; t<=1; t+=1/15) colors.push(d3.interpolateSpectral(1-t)); //interpolateRdYlGn interpolateRdYlBu
+	var colors = [];
+	for(var t=0; t<=1; t+=1/15) colors.push(d3.interpolateSpectral(1-t)); //interpolateRdYlGn interpolateRdYlBu
 
 	//get data
-    $.when(
-            //get commune geometries
-            $.ajax({url:"json/communes.json"}),
-            //get revenues data
-            $.ajax({url:"stat/revenus.csv"})
-    ).then(function(communes,data) {
+	$.when(
+			//get commune geometries
+			$.ajax({url:"json/communes.json"}),
+			//get revenues data
+			$.ajax({url:"stat/revenus.csv"})
+	).then(function(communes,data) {
 
-    	communes = communes[0];
-    	//communes = JSON.parse(communes);
+				communes = communes[0];
+				//communes = JSON.parse(communes);
 
-    	data = d3.csvParse(data[0]);
-    	data = EstLib.index1(data,"CODGEO","MED12");
+				data = d3.csvParse(data[0]);
+				data = EstLib.index1(data,"CODGEO","MED12");
 
-        //get communes
-        var communesRG = topojson.feature(communes, communes.objects.communes).features;
+				//get communes
+				var communesRG = topojson.feature(communes, communes.objects.communes).features;
 
-        //link values and build values list for color legend
-        var values=[];
-        for(var i=0; i<communesRG.length; i++){
-            var rg = communesRG[i];
-            var value = +data[rg.properties.id];
-            if(!value) value = +data[rg.properties.id.substring(1, rg.properties.id.length)];
-            if(!value) continue;
-            rg.properties.val = value;
-            values.push(value);
-        }
+				//link values and build values list for color legend
+				var values=[];
+				for(var i=0; i<communesRG.length; i++){
+					var rg = communesRG[i];
+					var value = +data[rg.properties.id];
+					if(!value) value = +data[rg.properties.id.substring(1, rg.properties.id.length)];
+					if(!value) continue;
+					rg.properties.val = value;
+					values.push(value);
+				}
 
-        var scale = d3.scaleQuantile().domain(values).range(colors);
-        scale.quantiles();
+				var scale = d3.scaleQuantile().domain(values).range(colors);
+				scale.quantiles();
 
-        //communes
- 		g.append("g").selectAll("path").data(communesRG).enter()
- 				.append("path").attr("d", path)
-                        .attr("fill", function(rg){
-                            if(!rg.properties.val) return "lightgray";
-                            return scale(+rg.properties.val);
-                        })
- 				.on("mouseover", function(rg) {
-                    var rg_ = d3.select(this);
-                    rg_.attr("fill___", rg_.style("fill"));
-                    rg_.style("fill","purple");
- 					tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Value: "+rg.properties.val+"<br>Statut: "+statutDict[rg.properties.st]+"<br>Code INSEE: "+rg.properties.id);
- 					})
- 				.on("mousemove", function() { tooltip.mousemove(); })
- 				.on("mouseout", function() {
-                    var rg_ = d3.select(this);
-                    rg_.style("fill",rg_.attr("fill___"));
- 					tooltip.mouseout();
+				//communes
+				g.append("g").selectAll("path").data(communesRG).enter()
+						.append("path").attr("d", path)
+						.attr("fill", function(rg){
+							if(!rg.properties.val) return "lightgray";
+							return scale(+rg.properties.val);
+						})
+						.on("mouseover", function(rg) {
+							var rg_ = d3.select(this);
+							rg_.attr("fill___", rg_.style("fill"));
+							rg_.style("fill","purple");
+							tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Value: "+rg.properties.val+"<br>Statut: "+statutDict[rg.properties.st]+"<br>Code INSEE: "+rg.properties.id);
+						})
+						.on("mousemove", function() { tooltip.mousemove(); })
+						.on("mouseout", function() {
+							var rg_ = d3.select(this);
+							rg_.style("fill",rg_.attr("fill___"));
+							tooltip.mouseout();
+						});
+
+				//limits
+				var bn = topojson.feature(communes, communes.objects.limites).features;
+				bn.filter(function (bn) {
+					var na = bn.properties.na;
+					console.log(na, (na!="o" && na!="a" && na!="c"));
+					return na!="o" && na!="a" && na!="c";
 				});
-
- 		//limits
-                //TODO do not draw the ones with stroke:none
- 		g.append("g").selectAll("path").data(topojson.feature(communes, communes.objects.limites).features).enter()
- 				.append("path").attr("d", path)
- 				.attr("class", function(bn){
- 					return ["bn","bn_"+bn.properties.na].join(" ");
- 				});
-
-    }
-    );
+				g.append("g").selectAll("path").data(bn).enter()
+						.append("path").attr("d", path)
+						.attr("class", function(bn){
+							return ["bn","bn_"+bn.properties.na].join(" ");
+						});
+			}
+	);
 
 </script>
 </body>

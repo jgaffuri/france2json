@@ -1,4 +1,4 @@
-filter bn - remove the ones with stroke:none
+filter bn on client side - remove the ones with stroke:none
 compress file
 
 compress more
