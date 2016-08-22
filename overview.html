@@ -62,6 +62,8 @@
 	d3.json("json/communes.json", function(error, communes) {
 		if (error) return console.error(error);
 
+		console.log(communes);
+
 		//communes
 		g.append("g").selectAll("path").data(topojson.feature(communes, communes.objects.communes).features).enter()
 				.append("path").attr("d", path)
