@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-size=1000
+size=1200
 margin=5
 q=10000
 s=0.5
