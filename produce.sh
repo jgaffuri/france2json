@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 size=1200
-q=10000
+q0=6000
+q1=3000
 s=0.5
 mkdir -p tmp
 mkdir -p json
@@ -13,8 +14,8 @@ topojson -o \
 	"limites=shp/LIMITE_COMMUNE.shp" \
 	-p id=INSEE_COM,nom=NOM_COM,st=STATUT_C,na=NATURE_C \
 	--bbox --width $size --height $size \
-	-s $s -q $q
-	#-q0 100000 -q1 100000
+	-s $s \
+	--q0 $q0 --q1 $q1
 
 echo "   communes surf"
 topojson -o \
@@ -22,4 +23,5 @@ topojson -o \
 	"communes=shp/COMMUNE.shp" \
 	-p id=INSEE_COM,nom=NOM_COM,st=STATUT_C,na=NATURE_C \
 	--bbox --width $size --height $size \
-	-s $s -q $q
+	-s $s \
+	--q0 $q0 --q1 $q1

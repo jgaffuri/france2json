@@ -1,17 +1,11 @@
-compress more
-use -q
-"-q: maximum number of differentiable points along either dimension". -> take the map size in pixels? *10 ?
-"When you run topojson on the command line, it will output the quantization precision in meters along x and y"
-see pre-post-quantization parameters:
-- "Pre-quantization occurs before the topology is constructed, and is controlled by --pre-quantization or --q0.
-Pre-quantization may produce simpler topologies from messy inputs, but should be disabled to preserve the input topology exactly."
-- "Post-quantization occurs after the topology is created which, and is solely for producing smaller files (e.g., for web delivery).
-Post-quantization is controlled by --post-quantization or --q1"
-"When using Cartesian coordinates, the meaning of the simplification threshold changes to be in projected coordinates. In conjunction with the --width and --height arguments (described below), you can specify a simplification threshold in pixels, which is convenient!" -> take 1 pixel? or 0.1?
-'compress' borders? check first with mouse over
 filter points (use --filter? Applies for lines?)
+Use the --filter=none argument to retain empty and null features.
+(Null geometry objects in TopoJSON have an undefined type, as described in the specification.)
+Use --filter=small if you want small rings that are attached to other rings to be removed;
+the default filter behavior, --filter=small-detached, only removes small rings that are not attached to other polygons, such as islands.
 
-reinstall topojson?
+
+use bbox to define svg size
 
 remove useless bn? decompose rg/bn ?
 
