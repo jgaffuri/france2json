@@ -54,7 +54,7 @@
 			tooltip = EstLib.tooltip({width:"250px"})
 			;
 
-	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"}
+	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"};
 
 	//build color scale
 	var colors = [];
@@ -70,6 +70,10 @@
 
 				communes = communes[0];
 				//communes = JSON.parse(communes);
+
+				/** @namespace communes.objects */
+				/** @namespace communes.objects.communes */
+				/** @namespace communes.objects.limites */
 
 				data = d3.csvParse(data[0]);
 				data = EstLib.index1(data,"CODGEO","MED12");
@@ -102,6 +106,9 @@
 							var rg_ = d3.select(this);
 							rg_.attr("fill___", rg_.style("fill"));
 							rg_.style("fill","purple");
+							/** @namespace rg.properties.st */
+							/** @namespace rg.properties.nom */
+							/** @namespace rg.properties.id */
 							tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Value: "+rg.properties.val+"<br>Statut: "+statutDict[rg.properties.st]+"<br>Code INSEE: "+rg.properties.id);
 						})
 						.on("mousemove", function() { tooltip.mousemove(); })
@@ -112,6 +119,7 @@
 						});
 
 				//limits
+				/** @namespace bn.properties.na */
 				var bn = topojson.feature(communes, communes.objects.limites).features;
 				bn = bn.filter(function (bn) {
 					var na = bn.properties.na;
