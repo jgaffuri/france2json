@@ -1,5 +1,4 @@
-title
-legend
+load
 sources
 
 remove useless bn? decompose rg/bn ?

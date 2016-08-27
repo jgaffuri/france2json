@@ -2,10 +2,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Revenues map</title>
+	<title>Carte des revenus par commune - France</title>
 	<style>
-		body { font-family: "Myriad Pro", Myriad, MyriadPro-Regular, 'Myriad Pro Regular', MyriadPro, 'Myriad Pro', "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", vegur, Vegur, Helvetica, Arial, sans-serif; }
-		#bck { fill: #f5f5f5; }
+		body { margin:0; font-family: "Myriad Pro", Myriad, MyriadPro-Regular, 'Myriad Pro Regular', MyriadPro, 'Myriad Pro', "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", vegur, Vegur, Helvetica, Arial, sans-serif; }
+		#bck { fill: #fff; }
+		#titlerect { fill: #f5f5f5; }
+		#title { font-size: 20px; font-weight: bold; }
 
 		.bn { fill: none; stroke-linecap:round; stroke-linejoin:round }
 		.bn_i { stroke: #000; stroke-width: 1px; }
@@ -32,11 +34,12 @@
 <body>
 <svg id="map"></svg>
 <div id="tooltip"></div>
-
 <script>
+	//<p><u>Sources:</u> INSEE, revenu médian en 20??. Limites de communes: <a href="http://professionnels.ign.fr/geofla" target="_blank">IGN-GEOFLA®</a>, <a href="https://github.com/jgaffuri/france2json/blob/gh-pages/README.md">france2json</a></p>
+
 	//build blank svg
-	var width = 1200,
-			height = 1114,
+	var width = "100%",
+			height = "100vh",
 	//build svg
 			svg = d3.select("#map").attr("width", width).attr("height", height),
 	//background rectangle
@@ -44,16 +47,32 @@
 	//drawing group
 			g = svg.append("g").attr("transform","translate(0,0)");
 
-	var path = d3.geoPath().projection(null);
-	svg.call(d3.zoom().scaleExtent([1,10]).on("zoom", function() { g.attr("transform", d3.event.transform); }));
+	svg.call(d3.zoom().scaleExtent([0.5,10]).on("zoom", function() { g.attr("transform", d3.event.transform); }));
+
+	//build colors scale
+	var nb = 30;
+	var colors = [];
+	for(var t=0; t<=1; t+=1/nb) colors.push(d3.interpolateSpectral(1-t)); //interpolateRdYlGn interpolateRdYlBu
+
+	//title
+	var gt = svg.append("g");
+	gt.append("rect").attr("id","titlerect").attr("x",0).attr("y",0).attr("width", width).attr("height", 35);
+	gt.append("text").attr("id","title").attr("x",5).attr("y",25).text("Revenus par commune");
+	for(var i=0;i<nb;i++){
+		gt.append("rect").attr("x",400+i*10).attr("y",5).attr("width", 10).attr("height", 12).style("fill",colors[i]);
+	}
+	gt.append("text").attr("x",400).attr("y",30).style("font-size","15").style("text-anchor","start").text("Bas revenus");
+	gt.append("text").attr("x",400+nb*10).attr("y",30).style("font-size","15").style("text-anchor","end").text("Hauts revenus");
+
+	//sources
+	//gt.append("rect").attr("id","titlerect").attr("x",0).attr("y",0).attr("width", width).attr("height", 35);
+
 
 	//tooltip element
 	var tooltip = EstLib.tooltip({width:"250px"}),
 			statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"};
 
-	//build color scale
-	var colors = [];
-	for(var t=0; t<=1; t+=1/30) colors.push(d3.interpolateSpectral(1-t)); //interpolateRdYlGn interpolateRdYlBu
+	var path = d3.geoPath().projection(null);
 
 	//get data
 	$.when(
@@ -64,7 +83,7 @@
 	).then(function(communes,data) {
 
 				communes = communes[0];
-				//communes = JSON.parse(communes);
+				communes = JSON.parse(communes);
 				/** @namespace communes.objects */
 				/** @namespace communes.objects.communes */
 				/** @namespace communes.objects.limites */
@@ -103,7 +122,7 @@
 							/** @namespace rg.properties.st */
 							/** @namespace rg.properties.nom */
 							/** @namespace rg.properties.id */
-							tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Value: "+rg.properties.val+"<br>Statut: "+statutDict[rg.properties.st]+"<br>Code INSEE: "+rg.properties.id);
+							tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Revenu médian par foyer:<br>"+(rg.properties.val? rg.properties.val.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + " €" : "Indéfini"));
 						})
 						.on("mousemove", function() { tooltip.mousemove(); })
 						.on("mouseout", function() {
