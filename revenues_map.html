@@ -45,6 +45,7 @@
 			g = svg.append("g").attr("transform","translate(0,0)");
 
 	var path = d3.geoPath().projection(null);
+	svg.call(d3.zoom().scaleExtent([1,10]).on("zoom", function() { g.attr("transform", d3.event.transform); }));
 
 	//tooltip element
 	var tooltip = EstLib.tooltip({width:"250px"}),
@@ -52,7 +53,7 @@
 
 	//build color scale
 	var colors = [];
-	for(var t=0; t<=1; t+=1/15) colors.push(d3.interpolateSpectral(1-t)); //interpolateRdYlGn interpolateRdYlBu
+	for(var t=0; t<=1; t+=1/30) colors.push(d3.interpolateSpectral(1-t)); //interpolateRdYlGn interpolateRdYlBu
 
 	//get data
 	$.when(
@@ -123,6 +124,7 @@
 						.attr("class", function(bn){
 							return ["bn","bn_"+bn.properties.na].join(" ");
 						});
+
 			}
 	);
 
