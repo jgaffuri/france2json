@@ -34,27 +34,10 @@
 <div id="tooltip"></div>
 
 <script>
-	//http://bl.ocks.org/mbostock/5557726
 
-	//get url parameters for projection, level and size
-	var size = 1200,
-
-	//build svg
-			svg = d3.select("#map").attr("width", size).attr("height", size),
-	//background rectangle
-			bckRect = svg.append("rect").attr("id","bck").attr("x",0).attr("y",0).attr("width", size).attr("height", size),
-	//drawing group
-			g = svg.append("g").attr("transform","translate(0,0)"),
-	//text
-			infoText = svg.append("text").attr("x",5).attr("y",20).attr("class","infoText"),
-
-	//path function
-			path = d3.geoPath().projection(null),
-	//tooltip
-			tooltip = EstLib.tooltip({width:"250px"})
-			;
-
-	var statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"};
+	//tooltip element
+	var tooltip = EstLib.tooltip({width:"250px"}),
+			statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"};
 
 	//build color scale
 	var colors = [];
@@ -70,7 +53,6 @@
 
 				communes = communes[0];
 				//communes = JSON.parse(communes);
-
 				/** @namespace communes.objects */
 				/** @namespace communes.objects.communes */
 				/** @namespace communes.objects.limites */
@@ -95,7 +77,19 @@
 				var scale = d3.scaleQuantile().domain(values).range(colors);
 				scale.quantiles();
 
-				//communes
+				//build blanck svg
+				var bbox = communes.bbox,
+						width = bbox[2]-bbox[0],
+						height = bbox[3]-bbox[1],
+				//build svg
+						svg = d3.select("#map").attr("width", width).attr("height", height),
+				//background rectangle
+						bckRect = svg.append("rect").attr("id","bck").attr("x",0).attr("y",0).attr("width", width).attr("height", height),
+				//drawing group
+						g = svg.append("g").attr("transform","translate("+(-bbox[0])+","+(-bbox[1])+")");
+
+				//draw communes
+				var path = d3.geoPath().projection(null);
 				g.append("g").selectAll("path").data(communesRG).enter()
 						.append("path").attr("d", path)
 						.attr("fill", function(rg){
@@ -118,7 +112,7 @@
 							tooltip.mouseout();
 						});
 
-				//limits
+				//draw limits
 				/** @namespace bn.properties.na */
 				var bn = topojson.feature(communes, communes.objects.limites).features;
 				bn = bn.filter(function (bn) {

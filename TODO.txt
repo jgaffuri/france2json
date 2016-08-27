@@ -1,4 +1,4 @@
-use bbox to define svg size
+check: http://bl.ocks.org/mbostock/5557726
 
 filter points (use --filter? Applies for lines?)
 Use the --filter=none argument to retain empty and null features.
