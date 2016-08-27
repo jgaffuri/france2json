@@ -1,7 +1,7 @@
+remove useless bn? decompose rg/bn ?
+
 load
 sources
-
-remove useless bn? decompose rg/bn ?
 
 filter points (use --filter? Applies for lines?)
 Use the --filter=none argument to retain empty and null features.

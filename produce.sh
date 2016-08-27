@@ -8,6 +8,23 @@ s=0.5
 mkdir -p tmp
 mkdir -p json
 
+
+echo "   extract opimised version shp"
+ogr2ogr -overwrite \
+	-sql "SELECT * FROM LIMITE_COMMUNE WHERE NATURE_C<>'o' AND NATURE_C<>'a' AND NATURE_C<>'c'" \
+    "tmp/LIMITE_COMMUNE_opt.shp" \
+    "shp/LIMITE_COMMUNE.shp"
+
+echo "   communes optimised"
+topojson -o \
+	"json/communesOpt.json" \
+	"communes=shp/COMMUNE.shp" \
+	"limites=tmp/LIMITE_COMMUNE_opt.shp" \
+	-p id=INSEE_COM,nom=NOM_COM,st=STATUT_C,na=NATURE_C \
+	--bbox --width $width --height $height \
+	-s $s \
+	--q0 $q0 --q1 $q1
+
 echo "   communes surf + lin"
 topojson -o \
 	"json/communes.json" \
