@@ -1,16 +1,14 @@
-check: http://bl.ocks.org/mbostock/5557726
+remove useless bn? decompose rg/bn ?
+
+semantic zoom. develop own, based on svg-transform. use line style redimension with scale factor
+http://bl.ocks.org/mbostock/2a39a768b1d4bc00a09650edef75ad39
+
 
 filter points (use --filter? Applies for lines?)
 Use the --filter=none argument to retain empty and null features.
 (Null geometry objects in TopoJSON have an undefined type, as described in the specification.)
 Use --filter=small if you want small rings that are attached to other rings to be removed;
 the default filter behavior, --filter=small-detached, only removes small rings that are not attached to other polygons, such as islands.
-
-remove useless bn? decompose rg/bn ?
-
-semantic zoom. develop own, based on svg-transform. use line style redimension with scale factor
-http://bl.ocks.org/mbostock/2a39a768b1d4bc00a09650edef75ad39
-
 
 
 
