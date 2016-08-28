@@ -1,5 +1,3 @@
-prom
-
 produce json for departements, cantons
 
 firefox test and fix
