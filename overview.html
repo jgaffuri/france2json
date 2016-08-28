@@ -9,18 +9,18 @@
 
 		.rg { fill: #aaa; }
 		.rg:hover { fill: darkred; }
-		.rg_s { fill: #aaa; }
+		.rg_s { fill: #805500; }
 		.rg_o { fill: #888; }
 		.rg_d { fill: #555; }
 		.rg_r { fill: #555; }
 		.rg_c { fill: #f00; }
 
 		.bn { fill: none; stroke-linecap:round; stroke-linejoin:round }
-		.bn_i { stroke: #000; stroke-width: 1px; }
+		.bn_i { stroke: #000; stroke-width: 1.5px; }
 		.bn_o { stroke: none; }
-		.bn_r { stroke: #fff; stroke-width: 1.2px; }
-		.bn_d { stroke: #fff; stroke-width: 0.8px; }
-		.bn_a { stroke: #ccc; stroke-width: 0.8px; }
+		.bn_r { stroke: #fff; stroke-width: 1.5px; }
+		.bn_d { stroke: #fff; stroke-width: 1px; }
+		.bn_a { stroke: #ccc; stroke-width: 1px; }
 		.bn_c { stroke: #ccc; stroke-width: 0.4px; }
 	</style>
 
@@ -46,7 +46,15 @@
 			g = svg.append("g").attr("transform","translate(0,0)");
 
 	//zoom
-	svg.call(d3.zoom().scaleExtent([0.5,10]).on("zoom", function() { g.attr("transform", d3.event.transform); }));
+	svg.call(d3.zoom().scaleExtent([0.5,10]).on("zoom", function() {
+		var k = d3.event.transform.k;
+		d3.selectAll(".bn_i").style("stroke-width", (1.5/k)+"px");
+		d3.selectAll(".bn_r").style("stroke-width", (1.5/k)+"px");
+		d3.selectAll(".bn_d").style("stroke-width", (1/k)+"px");
+		d3.selectAll(".bn_a").style("stroke-width", (1/k)+"px");
+		d3.selectAll(".bn_c").style("stroke-width", (0.4/k)+"px");
+		g.attr("transform", d3.event.transform);
+	}));
 
 	//tooltip element
 	var tooltip = EstLib.tooltip({width:"250px"}),

@@ -1,20 +1,11 @@
-firefox test and fix
-extract zoom?
+produce json for departements, zones electorales
 prom
 
-filter points (use --filter? Applies for lines?)
-Use the --filter=none argument to retain empty and null features.
-(Null geometry objects in TopoJSON have an undefined type, as described in the specification.)
-Use --filter=small if you want small rings that are attached to other rings to be removed;
-the default filter behavior, --filter=small-detached, only removes small rings that are not attached to other polygons, such as islands.
-
-overview map: sort boundaries. Loading. lines resize on zoom
-
+firefox test and fix
+extract zoom?
 
 move corsica
 add DOMs, etc
-
-produce json for departements, zones electorales
 
 ogrinfo -so -al myfile.shp
 communes
