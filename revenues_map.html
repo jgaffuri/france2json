@@ -131,7 +131,7 @@
 							/** @namespace rg.properties.st */
 							/** @namespace rg.properties.nom */
 							/** @namespace rg.properties.id */
-							tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Revenu médian par foyer:<br>"+(rg.properties.val? (rg.properties.val/12).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + " €/mois" : "Indéfini"));
+							tooltip.mouseover("<b>"+rg.properties.nom+"</b><br>Revenu médian par foyer:<br>"+(rg.properties.val? (rg.properties.val/12).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + " €/mois" : "Indéfini"));
 						})
 						.on("mousemove", function() { tooltip.mousemove(); })
 						.on("mouseout", function() {
