@@ -68,6 +68,7 @@
 	//drawing group
 			g = svg.append("g").attr("transform","translate(0,0)");
 
+	//zoom
 	svg.call(d3.zoom().scaleExtent([0.5,10]).on("zoom", function() { g.attr("transform", d3.event.transform); }));
 
 	//build colors scale
@@ -79,12 +80,12 @@
 	var gt = svg.append("g");
 	gt.append("rect").attr("id","titlerect").attr("x",0).attr("y",0).attr("width", width).attr("height", 35);
 	gt.append("text").attr("id","title").attr("x",5).attr("y",25).text("Revenus par commune");
+	//legend
 	for(var i=0;i<nb;i++){
 		gt.append("rect").attr("x",400+i*10).attr("y",5).attr("width", 10).attr("height", 12).style("fill",colors[i]);
 	}
 	gt.append("text").attr("x",400).attr("y",30).style("font-size","15").style("text-anchor","start").text("Bas revenus");
 	gt.append("text").attr("x",400+nb*10).attr("y",30).style("font-size","15").style("text-anchor","end").text("Hauts revenus");
-
 	//sources
 	gt.append("text").attr("x",820).attr("y",20).style("font-size","12").text('Sources: INSEE, revenu médian en 20??. Limites de communes: IGN-GEOFLA®, france2json');
 
