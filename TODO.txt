@@ -1,4 +1,6 @@
-line resize on zoom. extract zoom?
+line resize on zoom
+firefox
+extract zoom?
 prom
 
 filter points (use --filter? Applies for lines?)

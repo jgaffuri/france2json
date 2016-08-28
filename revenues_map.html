@@ -71,7 +71,7 @@
 			statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"};
 
 	//loading image
-	var loadingDiv = EstLib.loadingImage();
+	var loadingDiv = EstLib.loadingImage({imgsrc:"img/loading.png"});
 
 	var path = d3.geoPath().projection(null);
 
@@ -84,7 +84,7 @@
 	).then(function(communes,data) {
 
 				communes = communes[0];
-				communes = JSON.parse(communes);
+				if (typeof communes === 'string' || communes instanceof String) communes = JSON.parse(communes);
 				/** @namespace communes.objects */
 				/** @namespace communes.objects.communes */
 				/** @namespace communes.objects.limites */
