@@ -11,31 +11,9 @@
 
 		.bn { fill: none; stroke-linecap:round; stroke-linejoin:round }
 		.bn_i { stroke: #000; stroke-width: 1px; }
-		.bn_o { stroke: none; }
 		.bn_r { stroke: #000; stroke-width: 1.4px; }
 		.bn_d { stroke: #333; stroke-width: 1px; }
-		.bn_a { stroke: none; }
-		.bn_c { stroke: none; }
 
-		#loading {
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: 0;
-			position: fixed;
-			display: block;
-			opacity: 0.7;
-			background-color: #fff;
-			z-index: 99;
-			text-align: center;
-		}
-
-		#loading-image {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			z-index: 100;
-		}
 	</style>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -52,7 +30,6 @@
 </head>
 
 <body>
-<div id="loading"><img id="loading-image" src="img/loading.gif" alt="Loading..." /></div>
 <svg id="map"></svg>
 <div id="tooltip"></div>
 <script>
@@ -93,6 +70,9 @@
 	var tooltip = EstLib.tooltip({width:"250px"}),
 			statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"};
 
+	//loading image
+	var loadingDiv = EstLib.loadingImage();
+
 	var path = d3.geoPath().projection(null);
 
 	//get data
@@ -104,7 +84,7 @@
 	).then(function(communes,data) {
 
 				communes = communes[0];
-				//communes = JSON.parse(communes);
+				communes = JSON.parse(communes);
 				/** @namespace communes.objects */
 				/** @namespace communes.objects.communes */
 				/** @namespace communes.objects.limites */
@@ -129,7 +109,7 @@
 				var scale = d3.scaleQuantile().domain(values).range(colors);
 				scale.quantiles();
 
-				$('#loading').hide();
+				loadingDiv.hide();
 
 				//draw communes
 				g.append("g").selectAll("path").data(communesRG).enter()

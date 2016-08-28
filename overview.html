@@ -51,9 +51,14 @@
 	var tooltip = EstLib.tooltip({width:"250px"}),
 			statutDict = {s:"Commune simple",o:"Sous-préfecture",d:"Préfecture de département",r:"Préfecture de région",c:"Capitale"};
 
+	//loading image
+	var loadingDiv = EstLib.loadingImage();
+
 	//get data
 	d3.json("json/communes.json", function(error, communes) {
 		if (error) return console.error(error);
+
+		loadingDiv.hide();
 
 		//draw communes
 		g.append("g").selectAll("path").data(topojson.feature(communes, communes.objects.communes).features).enter()

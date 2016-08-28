@@ -1,4 +1,3 @@
-extract and reuse loading
 line resize on zoom. extract zoom?
 prom
 
