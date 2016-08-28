@@ -15,9 +15,9 @@ ogr2ogr -overwrite \
     "tmp/LIMITE_COMMUNE_opt.shp" \
     "shp/LIMITE_COMMUNE.shp"
 
-echo "   communes optimised"
+echo "   communes without limits o,a,c"
 topojson -o \
-	"json/communesOpt.json" \
+	"json/communes_nolim_oac.json" \
 	"communes=shp/COMMUNE.shp" \
 	"limites=tmp/LIMITE_COMMUNE_opt.shp" \
 	-p id=INSEE_COM,nom=NOM_COM,st=STATUT_C,na=NATURE_C \
@@ -25,7 +25,7 @@ topojson -o \
 	-s $s \
 	--q0 $q0 --q1 $q1
 
-echo "   communes surf + lin"
+echo "   communes surf + limits"
 topojson -o \
 	"json/communes.json" \
 	"communes=shp/COMMUNE.shp" \
@@ -37,7 +37,7 @@ topojson -o \
 
 echo "   communes surf"
 topojson -o \
-	"json/communes_.json" \
+	"json/communes_surf.json" \
 	"communes=shp/COMMUNE.shp" \
 	-p id=INSEE_COM,nom=NOM_COM,st=STATUT_C,na=NATURE_C \
 	--bbox --width $width --height $height \

@@ -4,7 +4,7 @@ This repository provides a number of reusable stuff and examples to make nice we
 - <a href="http://jgaffuri.github.io/france2json/overview.html">Map of the communes of France</a>
 - <a href="http://jgaffuri.github.io/france2json/revenues_map.html">Map of income by commune</a>
 
-## Structure of communes.json file
+## File structure
 
 The file <a href="/json">communes.json</a> provides 2 feature collections:
 
@@ -25,6 +25,8 @@ The file <a href="/json">communes.json</a> provides 2 feature collections:
   - d: Limite de département
   - a: Limite d'arrondissement
   - c: Limite de commune
+
+The file <a href="/json">communes_nolim_oac.json</a> has the same content as communes.json, excluding limits of types 'o', 'a' and 'c', which are often useless to show on maps. The file <a href="/json">communes_surf.json</a> contains only the 'commune' geometries (surfaces), without any limit.
 
 ## Copyright
 

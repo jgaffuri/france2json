@@ -84,7 +84,7 @@
 	//get data
 	$.when(
 			//get commune geometries
-			$.ajax({url:"json/communesOpt.json"}),
+			$.ajax({url:"json/communes_nolim_oac.json"}),
 			//get revenues data
 			$.ajax({url:"stat/revenus.csv"})
 	).then(function(communes,data) {
