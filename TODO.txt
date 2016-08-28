@@ -1,5 +1,4 @@
-line resize on zoom
-firefox
+firefox test and fix
 extract zoom?
 prom
 
@@ -9,7 +8,7 @@ Use the --filter=none argument to retain empty and null features.
 Use --filter=small if you want small rings that are attached to other rings to be removed;
 the default filter behavior, --filter=small-detached, only removes small rings that are not attached to other polygons, such as islands.
 
-overview map: sort boundaries. Loading
+overview map: sort boundaries. Loading. lines resize on zoom
 
 
 move corsica
