@@ -1,8 +1,4 @@
-firefox test and fix
-
-http://www.insee.fr/fr/bases-de-donnees/default.asp?page=statistiques-locales/revenu-niveau-vie.htm
-http://mappemonde.mgm.fr/num3/articles/art04305.pdf
-
+Source: http://www.insee.fr/fr/bases-de-donnees/default.asp?page=statistiques-locales/revenu-niveau-vie.htm
 
 produce json for departements, cantons
 
