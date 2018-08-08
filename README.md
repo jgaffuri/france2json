@@ -4,6 +4,8 @@ This repository provides a number of reusable stuff and examples to make nice we
 - <a href="http://jgaffuri.github.io/france2json/overview.html">Map of the communes of France</a>
 - <a href="http://jgaffuri.github.io/france2json/revenues_map.html">Map of income by commune</a>
 
+![Map of income by commune](img/rev.png)
+
 ## File structure
 
 The file <a href="/json">communes.json</a> provides 2 feature collections:
