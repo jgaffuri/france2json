@@ -1,14 +1,16 @@
 # france2json
 
-This repository provides a number of reusable stuff and examples to make nice web maps of France. It is based on the <a href="http://professionnels.ign.fr/geofla" target="_blank">GEOFLA® dataset</a>, <a href="https://github.com/mbostock/topojson/wiki" target="_blank">TopoJSON format</a> and <a href="https://d3js.org/" target="_blank">D3.js</a> library. See these examples:
-- <a href="http://jgaffuri.github.io/france2json/overview.html">Map of the communes of France</a>
-- <a href="http://jgaffuri.github.io/france2json/revenues_map.html">Map of income by commune</a>
+This repository provides a number of reusable stuff and examples to make nice web maps of France. It is based on the [GEOFLA® dataset](http://professionnels.ign.fr/geofla), [TopoJSON format](https://github.com/mbostock/topojson/wiki) and [D3.js](https://d3js.org) library.
 
-[![Map of income by commune](img/rev.png)](http://jgaffuri.github.io/france2json/revenues_map.html)
+Some examples:
+- [Map of the communes of France](https://bl.ocks.org/jgaffuri/raw/3568b0dae74c341866d2459726517d13/)
+- [Map of income by commune](https://bl.ocks.org/jgaffuri/raw/88840ee82b039d730d1df5f9856cf894/)
+
+[![Map of income by commune](img/rev.png)](https://bl.ocks.org/jgaffuri/raw/88840ee82b039d730d1df5f9856cf894/)
 
 ## File structure
 
-The file <a href="/json">communes.json</a> provides 2 feature collections:
+The file [communes.json](/json) provides 2 feature collections:
 
 - 'communes' representing the communes with a polygonal geometry, with the following properties:
   - id: INSEE identifier, used to join statistical figures.
@@ -28,7 +30,8 @@ The file <a href="/json">communes.json</a> provides 2 feature collections:
   - a: Limite d'arrondissement
   - c: Limite de commune
 
-The file <a href="/json">communes_nolim_oac.json</a> has the same content as communes.json, excluding limits of types 'o', 'a' and 'c', which are often useless to show on maps. The file <a href="/json">communes_surf.json</a> contains only the 'commune' geometries (surfaces), without any limit.
+The file [communes_nolim_oac.json](/json) has the same content as communes.json, excluding limits of types 'o', 'a' and 'c', which are often useless to show on maps.
+The file [communes_surf.json](/json) contains only the 'commune' geometries (surfaces), without any limit.
 
 ## Support and contribution
 
@@ -36,4 +39,7 @@ Feel free to [ask support](https://github.com/jgaffuri/france2json/issues/new), 
 
 ## Copyright
 
-<a href="http://professionnels.ign.fr/geofla" target="_blank">GEOFLA® dataset</a> is copyrighted. See the <a href="http://professionnels.ign.fr/geofla" target="_blank">IGN website</a> for more information.
+
+
+
+[GEOFLA® dataset](http://professionnels.ign.fr/geofla) is copyrighted. See the [IGN website](http://professionnels.ign.fr/geofla) for more information.
