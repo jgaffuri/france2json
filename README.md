@@ -3,8 +3,8 @@
 This repository provides a number of reusable stuff and examples to make nice web maps of France. It is based on the [GEOFLA® dataset](http://professionnels.ign.fr/geofla), [TopoJSON format](https://github.com/mbostock/topojson/wiki) and [D3.js](https://d3js.org) library.
 
 Some examples:
-- [Map of the communes of France](https://bl.ocks.org/jgaffuri/raw/3568b0dae74c341866d2459726517d13/)
-- [Map of income by commune](https://bl.ocks.org/jgaffuri/raw/88840ee82b039d730d1df5f9856cf894/)
+- [Map of the communes of France](https://bl.ocks.org/jgaffuri/raw/3568b0dae74c341866d2459726517d13/) (see the [code](https://bl.ocks.org/jgaffuri/3568b0dae74c341866d2459726517d13)).
+- [Map of income by commune](https://bl.ocks.org/jgaffuri/raw/88840ee82b039d730d1df5f9856cf894/) (see the [code](https://bl.ocks.org/jgaffuri/88840ee82b039d730d1df5f9856cf894)).
 
 [![Map of income by commune](img/rev.png)](https://bl.ocks.org/jgaffuri/raw/88840ee82b039d730d1df5f9856cf894/)
 
