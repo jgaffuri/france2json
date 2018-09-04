@@ -10,7 +10,7 @@ Some examples:
 
 ## File structure
 
-The file [communes.json](/json) provides 2 feature collections:
+The file [communes.json](/json/2011) provides 2 feature collections:
 
 - 'communes' representing the communes with a polygonal geometry, with the following properties:
   - id: INSEE identifier, used to join statistical figures.
@@ -30,16 +30,13 @@ The file [communes.json](/json) provides 2 feature collections:
   - a: Limite d'arrondissement
   - c: Limite de commune
 
-The file [communes_nolim_oac.json](/json) has the same content as communes.json, excluding limits of types 'o', 'a' and 'c', which are often useless to show on maps.
-The file [communes_surf.json](/json) contains only the 'commune' geometries (surfaces), without any limit.
+The file [communes_nolim_oac.json](/json/2011) has the same content as communes.json, excluding limits of types 'o', 'a' and 'c', which are often useless to show on maps.
+The file [communes_surf.json](/json/2011) contains only the 'commune' geometries (surfaces), without any limit.
 
 ## Support and contribution
 
 Feel free to [ask support](https://github.com/jgaffuri/france2json/issues/new), fork the project or simply star it (it's always a pleasure).
 
 ## Copyright
-
-
-
 
 [GEOFLA® dataset](http://professionnels.ign.fr/geofla) is copyrighted. See the [IGN website](http://professionnels.ign.fr/geofla) for more information.
